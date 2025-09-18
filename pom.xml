@@ -19,6 +19,7 @@
 
         <maven.surefire.plugin.version>3.2.3</maven.surefire.plugin.version>
         <allure.maven.plugin.version>2.15.2</allure.maven.plugin.version>
+        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
     </properties>
 
     <dependencyManagement>
@@ -111,12 +112,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
+                    <useModulePath>false</useModulePath>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
